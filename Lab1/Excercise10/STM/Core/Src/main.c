@@ -89,7 +89,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   int sec = 0, min = 0, hour = 0;
-  int midman;
+  int thePreviousLed;
   clearAllClock();
   /* USER CODE END 2 */
 
@@ -109,25 +109,25 @@ int main(void)
 		hour = 0;
 	}
 	if(sec%5 == 0){
-		if(sec/5 == 0) midman = 11;
-		else midman = sec/5-1;
-		if(midman != min/5 && midman != hour) clearNumberOnClock(midman);
+		if(sec/5 == 0) thePreviousLed = 11;
+		else thePreviousLed = sec/5-1;
+		if(thePreviousLed != min/5 && thePreviousLed != hour) clearNumberOnClock(thePreviousLed);
 
 	}
 	if(min%5 == 0){
-		if(min/5 == 0) midman = 11;
-		else midman = min/5-1;
-		if(midman != sec/5 && midman != hour) clearNumberOnClock(midman);
+		if(min/5 == 0) thePreviousLed = 11;
+		else thePreviousLed = min/5-1;
+		if(thePreviousLed != sec/5 && thePreviousLed != hour) clearNumberOnClock(thePreviousLed);
 
 	}
-	if(hour == 0) midman = 11;
-	else midman = hour - 1;
-	if(midman != sec/5 && midman != min/5) clearNumberOnClock(midman);
+	if(hour == 0) thePreviousLed = 11;
+	else thePreviousLed = hour - 1;
+	if(thePreviousLed != sec/5 && thePreviousLed != min/5) clearNumberOnClock(thePreviousLed);
 	setNumberOnClock(sec/5);
 	setNumberOnClock(min/5);
 	setNumberOnClock(hour);
 	sec++;
-	HAL_Delay(1000);
+	HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -202,18 +202,10 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void clearAllClock(){
-	HAL_GPIO_WritePin(LED_1_GPIO_Port, LED_1_Pin, SET);
-	HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin, SET);
-	HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, SET);
-	HAL_GPIO_WritePin(LED_4_GPIO_Port, LED_4_Pin, SET);
-	HAL_GPIO_WritePin(LED_5_GPIO_Port, LED_5_Pin, SET);
-	HAL_GPIO_WritePin(LED_6_GPIO_Port, LED_6_Pin, SET);
-	HAL_GPIO_WritePin(LED_7_GPIO_Port, LED_7_Pin, SET);
-	HAL_GPIO_WritePin(LED_8_GPIO_Port, LED_8_Pin, SET);
-	HAL_GPIO_WritePin(LED_9_GPIO_Port, LED_9_Pin, SET);
-	HAL_GPIO_WritePin(LED_10_GPIO_Port, LED_10_Pin, SET);
-	HAL_GPIO_WritePin(LED_11_GPIO_Port, LED_11_Pin, SET);
-	HAL_GPIO_WritePin(LED_12_GPIO_Port, LED_12_Pin, SET);
+	HAL_GPIO_WritePin(GPIOA, LED_1_Pin|LED_2_Pin|LED_3_Pin|LED_4_Pin
+	                          |LED_5_Pin|LED_6_Pin|LED_7_Pin|LED_8_Pin
+	                          |LED_9_Pin|LED_10_Pin|LED_11_Pin|LED_12_Pin, GPIO_PIN_SET);
+
 }
 
 void setNumberOnClock(int num){

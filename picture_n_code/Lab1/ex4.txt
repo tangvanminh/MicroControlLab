@@ -1,0 +1,54 @@
+void display7SEG(int num){
+	if(num == 0) {
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_B_Pin|SEG_C_Pin|
+					 SEG_D_Pin|SEG_E_Pin|SEG_F_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_G_Pin, GPIO_PIN_SET);
+
+	}
+	if(num == 1) {
+		HAL_GPIO_WritePin(GPIOA, SEG_B_Pin|SEG_C_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_D_Pin|SEG_E_Pin|
+					 SEG_F_Pin|SEG_G_Pin, GPIO_PIN_SET);
+	}
+	if(num == 2) {		
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_D_Pin|SEG_E_Pin|
+					 SEG_B_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_C_Pin|SEG_F_Pin, GPIO_PIN_SET);
+	}
+	if(num == 3) {
+
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_D_Pin|SEG_B_Pin|
+					 SEG_C_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_E_Pin|SEG_F_Pin, GPIO_PIN_SET);
+	}
+	if(num == 4) {
+		HAL_GPIO_WritePin(GPIOA, SEG_B_Pin|SEG_C_Pin|
+					 SEG_F_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_D_Pin|SEG_E_Pin, GPIO_PIN_SET);
+	}
+	if(num == 5) {
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_D_Pin|SEG_C_Pin|
+					 SEG_F_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_B_Pin|SEG_E_Pin, GPIO_PIN_SET);
+	}
+	if(num == 6) {
+		HAL_GPIO_WritePin(GPIOA, SEG_C_Pin|SEG_A_Pin|SEG_D_Pin|
+					 SEG_E_Pin|SEG_F_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_B_Pin, GPIO_PIN_SET);
+	}
+	if(num == 7) {
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_B_Pin|SEG_C_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_D_Pin|SEG_E_Pin|
+					 SEG_F_Pin|SEG_G_Pin, GPIO_PIN_SET);
+	}
+	if(num == 8) {
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_B_Pin|SEG_C_Pin|SEG_D_Pin|
+					 SEG_E_Pin|SEG_F_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		
+	}
+	if(num == 9) {
+		HAL_GPIO_WritePin(GPIOA, SEG_A_Pin|SEG_B_Pin|SEG_C_Pin|SEG_D_Pin|
+					 SEG_F_Pin|SEG_G_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, SEG_E_Pin, GPIO_PIN_SET);
+	}
+}

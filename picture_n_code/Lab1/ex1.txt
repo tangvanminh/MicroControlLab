@@ -1,0 +1,21 @@
+  while (1)
+  {
+	  if(led_status == 1){ // turn led red on and led yellow off
+		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+		  count = count + 1;
+		  if(count >= 2){ // at the second 2 change status
+			  count = 0;
+			  led_status = 2;
+		  }
+	  }else if(led_status == 2){ // led yellow off and led red on
+		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+		  count = count + 1;
+		  if(count >= 2){ // at the second 2 change status
+			  count = 0;
+			  led_status = 1;
+		  }
+	  }
+	  HAL_Delay(1000);
+  }
