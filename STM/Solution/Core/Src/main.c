@@ -266,7 +266,6 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 		default:
 			break;
 	}
-
 }
 
 void display7SEG(int num){
