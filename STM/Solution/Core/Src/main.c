@@ -69,7 +69,7 @@ void setTimer0 ( int duration ){
 void timer_run (){
 	if( timer0_counter > 0){
 		timer0_counter --;
-		if( timer0_counter == 0)
+		if( timer0_counter <= 0)
 			timer0_flag = 1;
 	}
 }
@@ -116,22 +116,26 @@ int main(void)
   {
 	if(timer0_flag == 1){
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-		setTimer0(2000);
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		setTimer0(1000);
+
+		second ++;
+		if ( second >= 60) {
+			second = 0;
+			minute ++;
+		}
+		if( minute >= 60) {
+			minute = 0;
+			hour ++;
+		}
+		if( hour >=24){
+			hour = 0;
+		}
+		updateClockBuffer(hour, minute);
 	}
-	second ++;
-	if ( second >= 60) {
-		second = 0;
-		minute ++;
-	}
-	if( minute >= 60) {
-		minute = 0;
-		hour ++;
-	}
-	if( hour >=24){
-		hour = 0;
-	}
-	updateClockBuffer(hour, minute);
-	HAL_Delay(1000) ;
+
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -269,12 +273,7 @@ int changeEN = 25;
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
 	timer_run();
-	counter --;
 	changeEN --;
-	if( counter <= 0){
-		counter = 100;
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-	}
 	if(changeEN <= 0){
 		changeEN = 25;
 		index_led = (index_led + 1)  % MAX_LED;
