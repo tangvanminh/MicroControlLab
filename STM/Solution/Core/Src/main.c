@@ -59,7 +59,20 @@ void updateClockBuffer(int hour, int minute);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int timer0_counter = 0;
+int timer0_flag = 0;
+int TIMER_CYCLE = 10;
+void setTimer0 ( int duration ){
+	timer0_counter = duration / TIMER_CYCLE ;
+	timer0_flag = 0;
+}
+void timer_run (){
+	if( timer0_counter > 0){
+		timer0_counter --;
+		if( timer0_counter == 0)
+			timer0_flag = 1;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -98,8 +111,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int hour = 15, minute = 8, second = 50;
+  setTimer0(10);
   while (1)
   {
+	if(timer0_flag == 1){
+		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+		setTimer0(2000);
+	}
 	second ++;
 	if ( second >= 60) {
 		second = 0;
@@ -250,11 +268,11 @@ int counter = 100;
 int changeEN = 25;
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
+	timer_run();
 	counter --;
 	changeEN --;
 	if( counter <= 0){
 		counter = 100;
-		HAL_GPIO_TogglePin ( LED_GPIO_Port , LED_Pin );
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	}
 	if(changeEN <= 0){
