@@ -431,7 +431,7 @@ static void MX_GPIO_Init(void)
 int index_led = 0;
 int led_buffer [4] = {9, 8, 7, 6};
 int counter = 100;
-int changeEN = 50;
+int changeEN = 25;
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
  8000324:	b580      	push	{r7, lr}
@@ -473,9 +473,9 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
  8000360:	681b      	ldr	r3, [r3, #0]
  8000362:	2b00      	cmp	r3, #0
  8000364:	dc0d      	bgt.n	8000382 <HAL_TIM_PeriodElapsedCallback+0x5e>
-		changeEN = 50;
+		changeEN = 25;
  8000366:	4b0c      	ldr	r3, [pc, #48]	; (8000398 <HAL_TIM_PeriodElapsedCallback+0x74>)
- 8000368:	2232      	movs	r2, #50	; 0x32
+ 8000368:	2219      	movs	r2, #25
  800036a:	601a      	str	r2, [r3, #0]
 		index_led = (index_led + 1)  % MAX_LED;
  800036c:	4b0c      	ldr	r3, [pc, #48]	; (80003a0 <HAL_TIM_PeriodElapsedCallback+0x7c>)
