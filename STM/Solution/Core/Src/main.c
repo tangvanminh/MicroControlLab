@@ -59,18 +59,31 @@ void updateClockBuffer(int hour, int minute);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int led_buffer [4] = {9, 8, 7, 6};
 int timer0_counter = 0;
 int timer0_flag = 0;
+int timer1_counter = 0;
+int timer1_flag = 0;
 int TIMER_CYCLE = 10;
+
 void setTimer0 ( int duration ){
 	timer0_counter = duration / TIMER_CYCLE ;
 	timer0_flag = 0;
+}
+void setTimer1 ( int duration ){
+	timer1_counter = duration / TIMER_CYCLE ;
+	timer1_flag = 0;
 }
 void timer_run (){
 	if( timer0_counter > 0){
 		timer0_counter --;
 		if( timer0_counter <= 0)
 			timer0_flag = 1;
+	}
+	if( timer1_counter > 0){
+		timer1_counter --;
+		if( timer1_counter <= 0)
+			timer1_flag = 1;
 	}
 }
 /* USER CODE END 0 */
@@ -111,7 +124,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int hour = 15, minute = 8, second = 50;
-  setTimer0(10);
+  setTimer0(1000);
+  setTimer1(250);
+  int index_led = 0;
+  const int MAX_LED = 4;
+  updateClockBuffer(hour, minute);
+  update7SEG(index_led);
   while (1)
   {
 	if(timer0_flag == 1){
@@ -133,7 +151,11 @@ int main(void)
 		}
 		updateClockBuffer(hour, minute);
 	}
-
+	if(timer1_flag == 1){
+		setTimer1(250);
+		index_led = (index_led + 1)  % MAX_LED;
+		update7SEG(index_led);
+	}
 
 
     /* USER CODE END WHILE */
@@ -265,20 +287,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-const int MAX_LED = 4;
-int index_led = 0;
-int led_buffer [4] = {9, 8, 7, 6};
-int counter = 100;
-int changeEN = 25;
+
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
 	timer_run();
-	changeEN --;
-	if(changeEN <= 0){
-		changeEN = 25;
-		index_led = (index_led + 1)  % MAX_LED;
-	}
-	update7SEG(index_led);
 }
 
 void updateClockBuffer(int hour, int minute){
@@ -288,7 +300,7 @@ void updateClockBuffer(int hour, int minute){
 	led_buffer[3] = minute%10;
 }
 
-void update7SEG ( int index ){
+void update7SEG (int index){
 	switch ( index ){
 		case 0:
 			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
