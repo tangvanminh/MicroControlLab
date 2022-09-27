@@ -158,8 +158,6 @@ int main(void)
 		index_led = (index_led + 1)  % MAX_LED;
 		update7SEG(index_led);
 	}
-
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
