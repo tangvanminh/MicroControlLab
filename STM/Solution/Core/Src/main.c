@@ -231,7 +231,7 @@ const int MAX_LED = 4;
 int index_led = 0;
 int led_buffer [4] = {9, 8, 7, 6};
 int counter = 100;
-int changeEN = 50;
+int changeEN = 25;
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
 	counter --;
@@ -242,7 +242,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	}
 	if(changeEN <= 0){
-		changeEN = 50;
+		changeEN = 25;
 		index_led = (index_led + 1)  % MAX_LED;
 	}
 	update7SEG(index_led);
