@@ -1,2 +1,1 @@
-# MicroControlLab
-Lab02
+# MicroControlLab Lab2
