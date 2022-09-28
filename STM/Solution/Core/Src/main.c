@@ -67,8 +67,8 @@ void displayLEDMatrix(uint8_t num);
 const int MAX_LED = 4;
 const int MAX_LED_MATRIX = 8;
 
-uint8_t matrix_buffer [8] = {0x03 , 0x01 , 0xCC , 0xCC , 0xCC , 0xCC , 0x01 , 0x03 };
-uint8_t matrix_buffer_for_shift [2] = {0xFF , 0xFF};
+uint8_t matrix_buffer [8] = {0x03 , 0x01 , 0xCC , 0xCC , 0xCC , 0xCC , 0x01 , 0x03 }; // Present 'A' for led matrix
+uint8_t matrix_buffer_for_shift [2] = {0xFF , 0xFF};// Space between the rotation of 'A'
 int led_buffer [4] = {9, 8, 7, 6};
 
 int timer0_counter = 0;
