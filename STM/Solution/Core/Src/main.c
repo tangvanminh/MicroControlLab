@@ -57,6 +57,7 @@ void update7SEG(int index);
 void updateClockBuffer(int hour, int minute);
 void update7SEG(int index);
 void updateClockBuffer(int hour, int minute);
+void shiftLeftMatrixBuffer(void);
 void updateLEDMatrix(int index);
 void displayLEDMatrix(uint8_t num);
 /* USER CODE END PFP */
@@ -67,6 +68,7 @@ const int MAX_LED = 4;
 const int MAX_LED_MATRIX = 8;
 
 uint8_t matrix_buffer [8] = {0x03 , 0x01 , 0xCC , 0xCC , 0xCC , 0xCC , 0x01 , 0x03 };
+uint8_t matrix_buffer_for_shift [2] = {0xFF , 0xFF};
 int led_buffer [4] = {9, 8, 7, 6};
 
 int timer0_counter = 0;
@@ -181,6 +183,9 @@ int main(void)
 	if(timer2_flag == 1){
 		setTimer2(250);
 		index_led_matrix = (index_led_matrix + 1)  % MAX_LED_MATRIX;
+		if(index_led_matrix == 0) {
+			shiftLeftMatrixBuffer();
+		}
 		updateLEDMatrix(index_led_matrix);
 	}
     /* USER CODE END WHILE */
@@ -335,6 +340,19 @@ void updateClockBuffer(int hour, int minute){
 	led_buffer[1] = hour%10;
 	led_buffer[2] = minute/10;
 	led_buffer[3] = minute%10;
+}
+
+void shiftLeftMatrixBuffer(){
+	matrix_buffer_for_shift[1] = matrix_buffer[0];
+	matrix_buffer[0] = matrix_buffer[1];
+	matrix_buffer[1] = matrix_buffer[2];
+	matrix_buffer[2] = matrix_buffer[3];
+	matrix_buffer[3] = matrix_buffer[4];
+	matrix_buffer[4] = matrix_buffer[5];
+	matrix_buffer[5] = matrix_buffer[6];
+	matrix_buffer[6] = matrix_buffer[7];
+	matrix_buffer[7] = matrix_buffer_for_shift[0];
+	matrix_buffer_for_shift[0] = matrix_buffer_for_shift[1];
 }
 
 void update7SEG (int index){
