@@ -148,7 +148,7 @@ int main(void)
   int hour = 15, minute = 8, second = 50;
   setTimer0(1000);
   setTimer1(250);
-  setTimer2(250);
+  setTimer2(20);
   int index_led = 0;
   int index_led_matrix = 0;
   updateClockBuffer(hour, minute);
@@ -181,11 +181,11 @@ int main(void)
 		update7SEG(index_led);
 	}
 	if(timer2_flag == 1){
-		setTimer2(250);
+		setTimer2(100);
 		index_led_matrix = (index_led_matrix + 1)  % MAX_LED_MATRIX;
-		if(index_led_matrix == 0) {
-			shiftLeftMatrixBuffer();
-		}
+//		if(index_led_matrix == 0) {
+//			shiftLeftMatrixBuffer();
+//		}
 		updateLEDMatrix(index_led_matrix);
 	}
     /* USER CODE END WHILE */
