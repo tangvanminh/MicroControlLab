@@ -6,7 +6,6 @@
  */
 #include "fsm_normal.h"
 
-int running_count = 0;
 int deletion_count = 0;
 
 void fsm_normal_run(){
@@ -29,28 +28,24 @@ void fsm_normal_run(){
 			setTimer1_ms(1000);
 			deletion_count ++;
 		}
-		led7segBuffer[0] = (red_count - deletion_count)/10;
-		led7segBuffer[1] = (red_count - deletion_count)%10;
+		updateFirstCouple7SEGBuffer(red_count-deletion_count);
 		HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
 		HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
 		HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
 
 		if(deletion_count <= green_count){
-			led7segBuffer[2] = (green_count - deletion_count) /10;
-			led7segBuffer[3] = (green_count - deletion_count) %10;
+			updateSecondCouple7SEGBuffer(green_count - deletion_count);
 			HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
 			HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, RESET);
 			HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
 
 		}else if(deletion_count <= green_count + yellow_count){
-			led7segBuffer[2] = (green_count + yellow_count - deletion_count) /10;
-			led7segBuffer[3] = (green_count + yellow_count - deletion_count) %10;
+			updateSecondCouple7SEGBuffer(green_count + yellow_count - deletion_count);
 			HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
 			HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
 			HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, RESET);
 		}else {
-			led7segBuffer[2] = (green_count + yellow_count + red_count - deletion_count) /10;
-			led7segBuffer[3] = (green_count + yellow_count + red_count - deletion_count) %10;
+			updateSecondCouple7SEGBuffer(green_count + yellow_count + red_count - deletion_count);
 			HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, RESET);
 			HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
 			HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
@@ -58,13 +53,22 @@ void fsm_normal_run(){
 
 		if(button0_flag == 1){
 			button0_flag = 0;
+			deletion_count = 0;
+			setTimer1_ms(500);
 			status = ADJUST_RED;
-			setTimer0_ms(30000);
+			HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
+			HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+			HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
+
+			HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, RESET);
+			HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
+			HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
 		}
 
 		if(timer0_flag == 1){
 			status = RUNNING_GREEN;
 			deletion_count = 0;
+			setTimer1_ms(1000);
 			setTimer0_ms(green_count *1000);
 		}
 		break;
@@ -74,27 +78,35 @@ void fsm_normal_run(){
 			setTimer1_ms(1000);
 			deletion_count ++;
 		}
-		led7segBuffer[0] = (green_count-deletion_count)/10;
-		led7segBuffer[1] = (green_count-deletion_count)%10;
+		update7SEGBuffer(green_count-deletion_count, green_count+yellow_count-deletion_count);
 		HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
 		HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, RESET);
 		HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
 
-		led7segBuffer[2] = (green_count+yellow_count-deletion_count)/10;
-		led7segBuffer[3] = (green_count+yellow_count-deletion_count)%10;
+
 		HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, RESET);
 		HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
 		HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
 
+
 		if(button0_flag == 1){
 			button0_flag = 0;
+			deletion_count = 0;
+			setTimer1_ms(250);
 			status = ADJUST_RED;
-			setTimer0_ms(30000);
+			HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
+			HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+			HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
+
+			HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
+			HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
+			HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
 		}
 
 		if(timer0_flag == 1){
 			status = RUNNING_YELLOW;
 			deletion_count = 0;
+			setTimer1_ms(1000);
 			setTimer0_ms(yellow_count *1000);
 		}
 		break;
@@ -104,27 +116,37 @@ void fsm_normal_run(){
 			setTimer1_ms(1000);
 			deletion_count ++;
 		}
-		led7segBuffer[0] = (yellow_count-deletion_count)/10;
-		led7segBuffer[1] = (yellow_count-deletion_count)%10;
+
+		update7SEGBuffer(yellow_count-deletion_count, yellow_count-deletion_count);
+
 		HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
 		HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
 		HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, RESET);
 
-		led7segBuffer[2] = (yellow_count-deletion_count)/10;
-		led7segBuffer[3] = (yellow_count-deletion_count)%10;
 		HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, RESET);
 		HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
 		HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
 
+
+
 		if(button0_flag == 1){
 			button0_flag = 0;
+			deletion_count = 0;
+			setTimer1_ms(500);
 			status = ADJUST_RED;
-			setTimer0_ms(30000);
+			HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
+			HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+			HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
+
+			HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, RESET);
+			HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
+			HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
 		}
 
 		if(timer0_flag == 1){
 			status = RUNNING_RED;
 			deletion_count = 0;
+			setTimer1_ms(1000);
 			setTimer0_ms(red_count *1000);
 		}
 		break;

@@ -7,6 +7,20 @@
 #include "display.h"
 int display_led_num = 3;
 
+void update7SEGBuffer(int num1, int num2){
+	led7segBuffer[0] = num1/10;
+	led7segBuffer[1] = num1%10;
+	led7segBuffer[2] = num2/10;
+	led7segBuffer[3] = num2%10;
+}
+void updateFirstCouple7SEGBuffer(int num1){
+	led7segBuffer[0] = num1/10;
+	led7segBuffer[1] = num1%10;
+}
+void updateSecondCouple7SEGBuffer(int num2){
+	led7segBuffer[2] = num2/10;
+	led7segBuffer[3] = num2%10;
+}
 void display7SEG(){
 	if(timer2_flag == 1){
 		setTimer2_ms(250);

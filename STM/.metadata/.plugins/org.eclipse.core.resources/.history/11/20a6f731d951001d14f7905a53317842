@@ -1,0 +1,34 @@
+/*
+ * fsm_adjust.c
+ *
+ *  Created on: Oct 14, 2022
+ *      Author: MINH
+ */
+#include "fsm_adjust.h"
+
+void fsm_adjust_run(){
+	switch (status){
+	case ADJUST_RED:
+		if(button0_flag == 1){
+			button0_flag = 0;
+			status = ADJUST_GREEN;
+		}
+		break;
+	case ADJUST_GREEN:
+		if(button0_flag == 1){
+			button0_flag = 0;
+			status = ADJUST_YELLOW;
+		}
+		break;
+	case ADJUST_YELLOW:
+		if(button0_flag == 1){
+			button0_flag = 0;
+			status = RUNNING_RED;
+			setTimer0_ms(red_count*1000);
+		}
+		break;
+	default:
+		break;
+	}
+}
+

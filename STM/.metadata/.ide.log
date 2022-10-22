@@ -1862,3 +1862,7 @@
 2022-10-14 15:35:15,054 [INFO] IPUIPlugin:74 - create IPUIPlugin
 2022-10-14 15:35:15,173 [INFO] OpenFileManager:333 - Restore cursor
 2022-10-14 15:35:35,462 [INFO] Gpio:254 - dependency for GPIO []
+2022-10-22 13:37:34,093 [INFO] Activator:177 - 
+
+
+2022-10-22 13:37:34,095 [INFO] Activator:178 - !SESSION log4j initialized

@@ -10,6 +10,7 @@
 
 #include "button.h"
 #include "softwaretimer.h"
+#include "display.h"
 
 #define INIT			0
 #define RUNNING_RED 	1
@@ -25,5 +26,7 @@ extern int led7segBuffer[4];
 extern int red_count;
 extern int yellow_count;
 extern int green_count;
+
+extern int increasing_num;
 
 #endif /* INC_GLOBAL_H_ */

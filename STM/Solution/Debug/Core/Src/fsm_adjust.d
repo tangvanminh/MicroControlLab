@@ -24,7 +24,7 @@ Core/Src/fsm_adjust.o: ../Core/Src/fsm_adjust.c ../Core/Inc/fsm_adjust.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/softwaretimer.h
+ ../Core/Inc/softwaretimer.h ../Core/Inc/display.h
 
 ../Core/Inc/fsm_adjust.h:
 
@@ -83,3 +83,5 @@ Core/Src/fsm_adjust.o: ../Core/Src/fsm_adjust.c ../Core/Inc/fsm_adjust.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 
 ../Core/Inc/softwaretimer.h:
+
+../Core/Inc/display.h:
