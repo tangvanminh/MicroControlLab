@@ -1,0 +1,9 @@
+/*
+ * global.c
+ *
+ *  Created on: Oct 14, 2022
+ *      Author: MINH
+ */
+#include "global.h"
+
+int status = INIT;

@@ -1,0 +1,16 @@
+/*
+ * button.c
+ *
+ *  Created on: Oct 14, 2022
+ *      Author: MINH
+ */
+#include "button.h"
+
+int button0_flag = 0;
+int button1_flag = 0;
+int button2_flag = 0;
+
+void getKeyInput(){
+
+}
+

@@ -1,0 +1,10 @@
+/*
+ * display.c
+ *
+ *  Created on: Oct 14, 2022
+ *      Author: MINH
+ */
+#include "display.h"
+
+setTimer2(250);
+

@@ -1,0 +1,39 @@
+/*
+ * button.c
+ *
+ *  Created on: Oct 14, 2022
+ *      Author: MINH
+ */
+#include "button.h"
+
+int button0_flag = 0;
+int button1_flag = 0;
+int button2_flag = 0;
+
+int button_press_count = 100;
+
+
+int debounceButtonBuffer1[NUM_OF_BUTTONS];
+int debounceButtonBuffer2[NUM_OF_BUTTONS];
+int debounceButtonBuffer3[NUM_OF_BUTTONS];
+
+void getKeyInput(){
+	debounceButtonBuffer1[0] = debounceButtonBuffer2[0];
+	debounceButtonBuffer2[0] = debounceButtonBuffer3[0];
+	debounceButtonBuffer3[0] = HAL_GPIO_ReadPin(MODE_BUTTON_GPIO_Port,MODE_BUTTON_Pin);
+
+	if(debounceButtonBuffer1[0]==debounceButtonBuffer2[0]
+	   && debounceButtonBuffer2[0] == debounceButtonBuffer3[0]){
+		if(debounceButtonBuffer3p[0] == BUTTON_PRESSED){
+			button0_flag = 1;
+			button_press_count--;
+			if(button_press_count == 0){
+				button_press_count = 25;
+				debounceButtonBuffer3[0] = BUTTON_RELEASED;
+			}
+		}
+
+
+	}
+}
+
