@@ -1,6 +1,11 @@
-main.c:66:5:main	8	static
-main.c:111:6:SystemClock_Config	72	static
-main.c:147:13:MX_TIM2_Init	32	static
-main.c:192:13:MX_GPIO_Init	32	static
-main.c:229:6:HAL_TIM_PeriodElapsedCallback	16	static
-main.c:238:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:72:5:main	8	static
+main.c:122:6:SystemClock_Config	72	static
+main.c:158:13:MX_TIM2_Init	32	static
+main.c:203:13:MX_GPIO_Init	32	static
+main.c:240:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:244:6:blinkLedRed	8	static
+main.c:247:6:blinkLedGreen	8	static
+main.c:250:6:blinkLedYellow	8	static
+main.c:253:6:countUp7SEG	8	static
+main.c:351:6:countDown3Led	8	static
+main.c:404:6:Error_Handler	4	static,ignoring_inline_asm

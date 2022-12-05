@@ -177,3 +177,74 @@ Finished building: Solution.bin
  
 Finished building: Solution.list
  
+23:56:17 **** Incremental Build of configuration Debug for project Solution ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'countUp7SEG':
+../Core/Src/main.c:345:2: error: 'count' undeclared (first use in this function); did you mean 'countUp'?
+  345 |  count = (countUp + 1)%10;
+      |  ^~~~~
+      |  countUp
+../Core/Src/main.c:345:2: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+23:56:24 **** Incremental Build of configuration Debug for project Solution ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Solution.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\learnin\vixuli-dieukhien\Lab\STM\Solution\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Solution.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Solution.elf
+ 
+arm-none-eabi-size   Solution.elf 
+arm-none-eabi-objdump -h -S  Solution.elf  > "Solution.list"
+arm-none-eabi-objcopy  -O ihex  Solution.elf  "Solution.hex"
+arm-none-eabi-objcopy  -O binary  Solution.elf  "Solution.bin"
+   text	   data	    bss	    dec	    hex	filename
+   7624	     20	   2444	  10088	   2768	Solution.elf
+Finished building: default.size.stdout
+ 
+Finished building: Solution.hex
+Finished building: Solution.bin
+ 
+ 
+Finished building: Solution.list
+ 
+23:59:25 **** Incremental Build of configuration Debug for project Solution ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Solution.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\learnin\vixuli-dieukhien\Lab\STM\Solution\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Solution.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Solution.elf
+ 
+arm-none-eabi-size   Solution.elf 
+arm-none-eabi-objdump -h -S  Solution.elf  > "Solution.list"
+arm-none-eabi-objcopy  -O ihex  Solution.elf  "Solution.hex"
+arm-none-eabi-objcopy  -O binary  Solution.elf  "Solution.bin"
+   text	   data	    bss	    dec	    hex	filename
+   7624	     20	   2444	  10088	   2768	Solution.elf
+Finished building: default.size.stdout
+ 
+Finished building: Solution.hex
+Finished building: Solution.bin
+ 
+ 
+Finished building: Solution.list
+ 
+00:01:14 **** Incremental Build of configuration Debug for project Solution ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Solution.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\learnin\vixuli-dieukhien\Lab\STM\Solution\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Solution.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Solution.elf
+ 
+arm-none-eabi-size   Solution.elf 
+arm-none-eabi-objdump -h -S  Solution.elf  > "Solution.list"
+arm-none-eabi-objcopy  -O ihex  Solution.elf  "Solution.hex"
+arm-none-eabi-objcopy  -O binary  Solution.elf  "Solution.bin"
+   text	   data	    bss	    dec	    hex	filename
+   8896	     24	   2448	  11368	   2c68	Solution.elf
+Finished building: default.size.stdout
+ 
+Finished building: Solution.bin
+Finished building: Solution.hex
+ 
+ 
+Finished building: Solution.list
+ 

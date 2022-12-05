@@ -96,11 +96,7 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  SCH_Add_Task(blinkLedRed, 50, 50);
-  SCH_Add_Task(blinkLedGreen, 60, 100);
-  SCH_Add_Task(blinkLedYellow, 70, 150);
-  SCH_Add_Task(countUp7SEG, 80, 200);
-  SCH_Add_Task(countDown3Led, 90, 250);
+  SCH_Add_Task(blinkLedRed, 50, 100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
