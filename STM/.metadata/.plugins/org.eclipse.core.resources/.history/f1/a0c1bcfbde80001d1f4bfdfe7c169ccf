@@ -364,6 +364,7 @@ void command_parser_fsm(){
 			command_data = HAL_ADC_GetValue(&hadc1);
 			countForRightCharInput = 0;
 			parserStatus = WAIT_OK;
+
 		}
 		break;
 	case WAIT_OK:
@@ -391,6 +392,7 @@ void command_parser_fsm(){
 			command_flag = 1;
 			countForRightCharInput = 0;
 			parserStatus = WAIT_RST;
+			set_timer0_ms(3000);
 		}
 		break;
 	default:

@@ -2309,3 +2309,9 @@
 2022-12-21 08:31:56,844 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 3127mS.
 2022-12-21 08:31:56,845 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 1mS.
 2022-12-21 08:31:56,846 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2022-12-21 10:24:12,692 [INFO] Activator:177 - 
+
+
+2022-12-21 10:24:12,694 [INFO] Activator:178 - !SESSION log4j initialized
+2022-12-21 10:25:06,104 [INFO] RetryExec:97 - I/O exception (java.net.SocketException) caught when processing request to {s}->https://download.eclipse.org:443: Socket operation on nonsocket: configureBlocking
+2022-12-21 10:25:06,106 [INFO] RetryExec:113 - Retrying request to {s}->https://download.eclipse.org:443
