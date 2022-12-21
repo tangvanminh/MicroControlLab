@@ -29,4 +29,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Core/Inc/software_timer.h</name>
+			<type>1</type>
+			<location>D:/learnin/vixuli-dieukhien/Lab/STM/Solution/Core/Inc/software_timer.h</location>
+		</link>
+		<link>
+			<name>Core/Src/software_timer.c</name>
+			<type>1</type>
+			<location>D:/learnin/vixuli-dieukhien/Lab/STM/Solution/Core/Src/software_timer.c</location>
+		</link>
+	</linkedResources>
 </projectDescription>
